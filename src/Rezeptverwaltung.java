@@ -17,54 +17,29 @@ public class Rezeptverwaltung {
     public void nehmeRezeptAuf (BasisRezept rezept){
 
         boolean rezeptAufgenommen = false;
+        boolean rezeptEnthalten = false;
         for (int i = 0; i < rezepte.length; i++) {
 
             if (rezepte[i] == null){
+
 
                 rezepte[i] = rezept;
                 System.out.println("Rezept aufgenommen");
                 rezeptAufgenommen = true;
                 break;
 
+            } else {
+                if (rezepte[i].getTyp().equals(rezept.getTyp()) && rezepte[i].getName().equals(rezept.getName())){
+                    System.out.println("Rezept bereits enthalten");
+                    rezeptAufgenommen = true;
+                    break;
+                }
             }
         }
         if (rezeptAufgenommen == false){
-            System.out.println("Rezept konnte nicht aufgenommen werden");
+            System.out.println("Rezeptverwaltung voll");
         }
     }
-
-    /*public void nehmeRezeptAuf (BasisRezept rezept){
-
-        boolean aktualisiert = false;
-        for (int i = 0; i < rezepte.length; i++){
-
-            if (rezepte[i] != null){
-
-                if (rezepte[i].getName().equals(rezept.getName()) && rezepte[i].getTyp().equals(rezept.getTyp())){
-
-                    // Aktualisieren von Rezept
-                    rezepte[i] = rezept;
-                    aktualisiert = true;
-                    break;
-
-                }
-            }
-        }
-
-        if (aktualisiert == false){
-
-            for (int i = 0; i < rezepte.length; i++){
-
-                if (rezepte[i] == null){
-
-                    // Hinzufügen von Rezept
-                    rezepte[i] = rezept;
-                    break;
-
-                }
-            }
-        }
-    }*/
 
     public void zeigeAlleRezepteAn () {
 
@@ -89,29 +64,6 @@ public class Rezeptverwaltung {
 
                     rezepte[i] = null;
 
-                }
-            }
-        }
-
-    }
-
-    public void zeigeRezeptAn (String rezeptname, String rezeptart){
-
-        for (int i = 0; i < rezepte.length; i++){
-
-            if (rezepte[i] != null){
-
-                if (rezepte[i].getName().equals(rezeptname) && rezepte[i].getTyp().equals(rezeptart)){
-
-                    System.out.println("Anzeige von Rezept:");
-                    System.out.println("Name: " + rezepte[i].getName());
-                    System.out.println("Rezeptart: " + rezepte[i].getTyp());
-                    System.out.print("Zutaten: ");
-                    for (int j = 0; j < rezepte[i].getZutaten().length; j++){
-
-                        System.out.print(rezepte[i].getZutaten()[j].getName() + " ");
-
-                    }
                 }
             }
         }
